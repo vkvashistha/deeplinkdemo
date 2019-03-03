@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/home_navigation" app:startDestination="@id/collection">
+    <fragment android:name="com.example.deeplinknavigation.Splash"
+              android:id="@+id/splash">
+        <action android:id="@+id/action_splash_to_login" app:destination="@id/login" app:popUpTo="@+id/login"
+                app:popUpToInclusive="true" app:launchSingleTop="false"/>
+    </fragment>
+
+    <fragment android:name="com.example.deeplinknavigation.Login"
+              android:id="@+id/login"/>
+    <fragment android:id="@+id/home"
+              android:name="com.example.deeplinknavigation.Home">
+        <deepLink android:id="@+id/deepLink" app:uri="/home" android:autoVerify="true"/>
+        <action android:id="@+id/action_home_to_collection" app:destination="@id/collection"/>
+    </fragment>
+    <fragment android:id="@+id/collection" android:name="com.example.deeplinknavigation.Collection"
+              android:label="Collection">
+        <action android:id="@+id/action_collection_to_product" app:destination="@id/product"/>
+        <deepLink android:id="@+id/deepLink2" app:uri="/home/collection" android:autoVerify="true"/>
+    </fragment>
+    <fragment android:id="@+id/product" android:name="com.example.deeplinknavigation.Product" android:label="Product">
+        <deepLink android:id="@+id/deepLink3" app:uri="/collection/product/{id}"/>
+        <deepLink android:id="@+id/deepLink4" app:uri="/product/{id}"/>
+    </fragment>
+
+    <action android:id="@+id/load_initial_data"
+            app:destination="@id/splash"
+    />
+
+</navigation>
